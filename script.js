@@ -3,6 +3,7 @@ const mobileMenu = document.getElementById("mobileMenu");
 const desktopLinks = document.querySelectorAll(".nav-tabs a[data-section]");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
 const sections = document.querySelectorAll("section[id]");
+const revealItems = document.querySelectorAll(".section, .card, .split-section, .hero-images");
 
 function closeMobileMenu() {
   menuBtn.classList.remove("active");
@@ -46,4 +47,26 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach((section) => {
   sectionObserver.observe(section);
+});
+
+revealItems.forEach((item) => {
+  item.classList.add("reveal");
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.14,
+  }
+);
+
+revealItems.forEach((item) => {
+  revealObserver.observe(item);
 });
