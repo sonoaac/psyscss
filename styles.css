@@ -960,6 +960,130 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  .landing {
+    min-height: 92vh;
+    padding: 54px 18px 42px;
+  }
+
+  .landing h1 {
+    font-size: 2.35rem;
+  }
+
+  .landing p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .landing-images {
+    min-height: 250px;
+  }
+
+  .landing-photo-back {
+    height: 180px;
+  }
+
+  .landing-photo-front {
+    height: 170px;
+  }
+
+  .intro {
+    min-height: auto;
+    padding: 42px 18px 58px;
+  }
+
+  .intro h2 {
+    font-size: 2rem;
+  }
+
+  .intro p {
+    font-size: 0.96rem;
+  }
+
+  .section {
+    padding: 42px 18px;
+  }
+
+  .stats-section {
+    padding: 38px 18px;
+  }
+
+  .split-copy h2,
+  .section-title h2,
+  .cta-strip h2 {
+    font-size: 1.75rem;
+  }
+
+  .section-title {
+    margin-bottom: 20px;
+  }
+
+  .card,
+  .stat-card,
+  .testimonial-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p,
+  .split-copy p,
+  .section-title p,
+  .faq-list p {
+    font-size: 0.94rem;
+  }
+
+  .stat-card strong {
+    font-size: 2.35rem;
+  }
+
+  .image-placeholder {
+    min-height: 220px;
+  }
+
+  .hero-images {
+    min-height: 250px;
+  }
+
+  .hero-photo-main {
+    height: 175px;
+  }
+
+  .hero-photo-overlap {
+    height: 145px;
+  }
+
+  .section,
+  .stats-section,
+  .testimonials-section,
+  .provider-section,
+  .contact-section {
+    background-image:
+      radial-gradient(circle at 92% 8%, rgba(127, 140, 255, 0.13), transparent 34%),
+      radial-gradient(circle at 4% 88%, rgba(214, 162, 26, 0.1), transparent 30%);
+  }
+
+  .reveal {
+    opacity: 0.18;
+    transform: translateY(18px) scale(0.985);
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Single-page healthcare rhythm */
 body {
   font-size: 16px;

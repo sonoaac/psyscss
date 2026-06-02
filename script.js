@@ -58,14 +58,21 @@ revealItems.forEach((item) => {
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
+        if (!isMobile) {
+          revealObserver.unobserve(entry.target);
+        }
+      } else if (isMobile) {
+        entry.target.classList.remove("is-visible");
       }
     });
   },
   {
-    threshold: 0.14,
+    rootMargin: "-8% 0px -12% 0px",
+    threshold: [0.12, 0.32],
   }
 );
 
