@@ -959,3 +959,211 @@ body {
     transition: none;
   }
 }
+
+/* Single-page healthcare rhythm */
+body {
+  font-size: 16px;
+}
+
+.section,
+.stats-section,
+.provider-section,
+.testimonials-section,
+.contact-section {
+  position: relative;
+}
+
+.section::before,
+.stats-section::before,
+.provider-section::before,
+.testimonials-section::before {
+  content: "";
+  position: absolute;
+  inset: 22px auto auto 14px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(127, 140, 255, 0.16), transparent 68%);
+  pointer-events: none;
+}
+
+.stats-section {
+  padding: 48px 20px;
+  background: #ffffff;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  display: grid;
+  gap: 6px;
+  padding: 28px 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff, var(--surface-soft));
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.stat-card strong {
+  color: var(--plum);
+  font-family: "New Title", Georgia, serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.stat-card-large {
+  background:
+    linear-gradient(135deg, rgba(127, 140, 255, 0.2), rgba(255, 255, 255, 0.88)),
+    #ffffff;
+}
+
+.provider-section {
+  background: #ffffff;
+}
+
+.provider-layout .image-placeholder {
+  min-height: 340px;
+}
+
+.testimonials-section {
+  background:
+    linear-gradient(135deg, rgba(240, 242, 255, 0.88), rgba(255, 255, 255, 0.96));
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: 16px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.testimonial-card-soft {
+  background: var(--surface-soft);
+}
+
+.testimonial-card p {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.testimonial-card span {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.map-placeholder {
+  display: grid;
+  min-height: 190px;
+  margin-top: 16px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(214, 162, 26, 0.2), transparent 40%),
+    linear-gradient(135deg, var(--surface-soft), #ffffff);
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.cta-strip {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  padding: 52px 20px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(214, 162, 26, 0.18), transparent 34%),
+    linear-gradient(135deg, var(--plum), var(--plum-2));
+  color: #ffffff;
+  text-align: center;
+}
+
+.cta-strip h2 {
+  max-width: 720px;
+  margin: 0;
+  font-family: "New Title", Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 1.08;
+}
+
+.cta-button {
+  background: #ffffff;
+  color: var(--plum);
+}
+
+.site-footer {
+  display: grid;
+  gap: 8px;
+  padding: 28px 20px;
+  background: #ffffff;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.site-footer p {
+  margin: 0;
+  font-weight: 800;
+}
+
+@media (min-width: 768px) {
+  .stats-section {
+    padding: 68px 48px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1.15fr 0.85fr 1.15fr;
+    align-items: stretch;
+  }
+
+  .stat-card-large {
+    transform: translateY(-12px);
+  }
+
+  .provider-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr 0.86fr;
+    align-items: center;
+  }
+
+  .testimonial-card-soft {
+    transform: translateY(18px);
+  }
+
+  .contact-layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .cta-strip {
+    padding: 72px 48px;
+  }
+
+  .cta-strip h2 {
+    font-size: 3rem;
+  }
+}

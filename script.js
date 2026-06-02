@@ -3,7 +3,9 @@ const mobileMenu = document.getElementById("mobileMenu");
 const desktopLinks = document.querySelectorAll(".nav-tabs a[data-section]");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
 const sections = document.querySelectorAll("section[id]");
-const revealItems = document.querySelectorAll(".section, .card, .split-section, .hero-images");
+const revealItems = document.querySelectorAll(
+  ".section, .card, .stat-card, .testimonial-card, .split-section, .hero-images, .cta-strip, .site-footer"
+);
 
 function closeMobileMenu() {
   menuBtn.classList.remove("active");
