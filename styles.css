@@ -713,19 +713,19 @@ body {
 .landing-photo-back,
 .hero-photo-overlap,
 .faq-image {
-  --photo-url: url("public/G1C.PNG");
+  --photo-url: url("G1C.PNG");
   --image-focus-y: 42%;
 }
 
 .landing-photo-front,
 .hero-photo-main,
 .provider-image {
-  --photo-url: url("public/GC1.PNG");
+  --photo-url: url("GC1.PNG");
   --image-focus-y: 38%;
 }
 
 .about-image {
-  --photo-url: url("public/1GC.PNG");
+  --photo-url: url("1GC.PNG");
   --image-focus-y: 34%;
 }
 
