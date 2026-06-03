@@ -4,8 +4,14 @@ const desktopLinks = document.querySelectorAll(".nav-tabs a[data-section]");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
 const sections = document.querySelectorAll("section[id]");
 const revealItems = document.querySelectorAll(
-  ".section, .card, .stat-card, .testimonial-card, .split-section, .hero-images, .cta-strip, .site-footer"
+  ".landing, .intro, main > .section, .card, .stat-card, .testimonial-card, .image-placeholder, .contact-form, .faq-list details, .map-placeholder, .cta-strip, .site-footer"
 );
+const parallaxImages = document.querySelectorAll(
+  ".landing-photo, .hero-photo, .image-placeholder"
+);
+const mobileMotionQuery = window.matchMedia("(max-width: 767px)");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let scrollFrame = null;
 
 function closeMobileMenu() {
   menuBtn.classList.remove("active");
@@ -53,7 +59,92 @@ sections.forEach((section) => {
 
 revealItems.forEach((item) => {
   item.classList.add("reveal");
+  item.style.setProperty("--scroll-direction", item.dataset.scrollDirection || 1);
 });
+
+function updateScrollZoom() {
+  scrollFrame = null;
+
+  if (reducedMotionQuery.matches) {
+    revealItems.forEach((item) => {
+      item.style.removeProperty("--scroll-scale-x");
+      item.style.removeProperty("--scroll-scale-y");
+      item.style.removeProperty("--scroll-x");
+      item.style.removeProperty("--scroll-y");
+      item.style.removeProperty("--scroll-opacity");
+    });
+
+    parallaxImages.forEach((item) => {
+      item.style.removeProperty("--image-scale");
+      item.style.removeProperty("--image-frame-scale");
+      item.style.removeProperty("--image-parallax-x");
+      item.style.removeProperty("--image-parallax-y");
+      item.style.removeProperty("--image-lift");
+      item.style.removeProperty("--image-tilt-x");
+      item.style.removeProperty("--image-tilt-y");
+    });
+    return;
+  }
+
+  if (!mobileMotionQuery.matches) {
+    revealItems.forEach((item) => {
+      item.style.removeProperty("--scroll-scale-x");
+      item.style.removeProperty("--scroll-scale-y");
+      item.style.removeProperty("--scroll-x");
+      item.style.removeProperty("--scroll-y");
+      item.style.removeProperty("--scroll-opacity");
+    });
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const viewportCenter = viewportHeight / 2;
+
+  parallaxImages.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    const itemCenter = rect.top + rect.height / 2;
+    const distanceFromCenter = (itemCenter - viewportCenter) / viewportHeight;
+    const clamped = Math.max(-1, Math.min(1, distanceFromCenter));
+    const depth = index % 2 === 0 ? 1 : -1;
+    const closeness = 1 - Math.min(1, Math.abs(clamped));
+
+    item.style.setProperty("--image-scale", (1.08 + closeness * 0.16).toFixed(3));
+    item.style.setProperty("--image-frame-scale", (0.97 + closeness * 0.05).toFixed(3));
+    item.style.setProperty("--image-parallax-x", `${(-clamped * 18 * depth).toFixed(1)}px`);
+    item.style.setProperty("--image-parallax-y", `${(-clamped * 54).toFixed(1)}px`);
+    item.style.setProperty("--image-lift", `${(-clamped * 10).toFixed(1)}px`);
+    item.style.setProperty("--image-tilt-x", `${(clamped * 7 * depth).toFixed(2)}deg`);
+    item.style.setProperty("--image-tilt-y", `${(-clamped * 5).toFixed(2)}deg`);
+  });
+
+  if (!mobileMotionQuery.matches) {
+    return;
+  }
+
+  revealItems.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    const itemCenter = rect.top + rect.height / 2;
+    const distance = Math.abs(itemCenter - viewportCenter);
+    const range = viewportCenter + rect.height / 2;
+    const progress = Math.max(0, Math.min(1, 1 - distance / range));
+    const direction = index % 2 === 0 ? -1 : 1;
+    const verticalDirection = itemCenter < viewportCenter ? -1 : 1;
+
+    item.style.setProperty("--scroll-scale-x", (0.9 + progress * 0.13).toFixed(3));
+    item.style.setProperty("--scroll-scale-y", (0.86 + progress * 0.18).toFixed(3));
+    item.style.setProperty("--scroll-x", `${(1 - progress) * 18 * direction}px`);
+    item.style.setProperty("--scroll-y", `${(1 - progress) * 28 * verticalDirection}px`);
+    item.style.setProperty("--scroll-opacity", (0.24 + progress * 0.76).toFixed(3));
+  });
+}
+
+function requestScrollZoomUpdate() {
+  if (scrollFrame) {
+    return;
+  }
+
+  scrollFrame = window.requestAnimationFrame(updateScrollZoom);
+}
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -79,3 +170,9 @@ const revealObserver = new IntersectionObserver(
 revealItems.forEach((item) => {
   revealObserver.observe(item);
 });
+
+updateScrollZoom();
+window.addEventListener("scroll", requestScrollZoomUpdate, { passive: true });
+window.addEventListener("resize", requestScrollZoomUpdate);
+mobileMotionQuery.addEventListener("change", updateScrollZoom);
+reducedMotionQuery.addEventListener("change", updateScrollZoom);
