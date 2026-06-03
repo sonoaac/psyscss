@@ -981,12 +981,6 @@ body {
   line-height: 1.35;
 }
 
-@media (min-width: 700px) {
-  .intro-chat {
-    display: none;
-  }
-}
-
 /* Periwinkle color theme */
 :root {
   --page-bg: #f7f8ff;
@@ -1228,6 +1222,7 @@ body {
 
 /* Single-page healthcare rhythm */
 body {
+  padding-bottom: 96px;
   font-size: 16px;
 }
 
@@ -1382,7 +1377,7 @@ body {
 .site-footer {
   display: grid;
   gap: 8px;
-  padding: 28px 20px;
+  padding: 28px 20px 98px;
   background: #ffffff;
   color: var(--muted);
   text-align: center;
