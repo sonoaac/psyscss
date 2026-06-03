@@ -1,8 +1,11 @@
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
+const headerPrev = document.getElementById("headerPrev");
+const headerNext = document.getElementById("headerNext");
 const desktopLinks = document.querySelectorAll(".nav-tabs a[data-section]");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
 const sections = document.querySelectorAll("section[id]");
+const scrollSections = Array.from(document.querySelectorAll("section[id], .cta-strip, .site-footer"));
 const revealItems = document.querySelectorAll(
   ".landing, .intro, main > .section, .card, .stat-card, .image-placeholder, .contact-form, .faq-list details, .map-placeholder, .cta-strip, .site-footer"
 );
@@ -27,6 +30,33 @@ function setActiveSection(sectionId) {
   });
 }
 
+function getNearestSectionIndex() {
+  const viewportAnchor = window.scrollY + window.innerHeight * 0.38;
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
+
+  scrollSections.forEach((section, index) => {
+    const distance = Math.abs(section.offsetTop - viewportAnchor);
+
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  return nearestIndex;
+}
+
+function slideToSection(direction) {
+  const currentIndex = getNearestSectionIndex();
+  const nextIndex = Math.max(0, Math.min(scrollSections.length - 1, currentIndex + direction));
+
+  scrollSections[nextIndex].scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
 menuBtn.addEventListener("click", () => {
   const isOpen = menuBtn.classList.toggle("active");
   mobileMenu.classList.toggle("active", isOpen);
@@ -35,6 +65,14 @@ menuBtn.addEventListener("click", () => {
 
 mobileLinks.forEach((link) => {
   link.addEventListener("click", closeMobileMenu);
+});
+
+headerPrev.addEventListener("click", () => {
+  slideToSection(-1);
+});
+
+headerNext.addEventListener("click", () => {
+  slideToSection(1);
 });
 
 const sectionObserver = new IntersectionObserver(

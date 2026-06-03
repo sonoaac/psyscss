@@ -8,24 +8,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <section class="landing" id="landing" aria-labelledby="landing-title">
-    <div class="landing-copy">
-      <p class="landing-kicker">Your Mental Health Matters</p>
-      <h1 id="landing-title">Care That Meets You Where You Are</h1>
-      <p>
-        Compassionate support, thoughtful guidance, and a clear path toward
-        emotional wellness.
-      </p>
-      <a class="button landing-button" href="#home">Get Help</a>
-    </div>
-
-    <div class="landing-images" aria-label="Layered care image placeholders">
-      <div class="landing-photo landing-photo-back"></div>
-      <div class="landing-photo landing-photo-front"></div>
-    </div>
-  </section>
-
   <header class="site-header">
+    <div class="header-arrow-rail" aria-label="Section slider controls">
+      <button class="header-arrow header-arrow-prev" id="headerPrev" type="button" aria-label="Previous section">‹</button>
+      <button class="header-arrow header-arrow-next" id="headerNext" type="button" aria-label="Next section">›</button>
+    </div>
+
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -48,6 +36,23 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
+
+  <section class="landing" id="landing" aria-labelledby="landing-title">
+    <div class="landing-copy">
+      <p class="landing-kicker">Your Mental Health Matters</p>
+      <h1 id="landing-title">Care That Meets You Where You Are</h1>
+      <p>
+        Compassionate support, thoughtful guidance, and a clear path toward
+        emotional wellness.
+      </p>
+      <a class="button landing-button" href="#home">Get Help</a>
+    </div>
+
+    <div class="landing-images" aria-label="Layered care image placeholders">
+      <div class="landing-photo landing-photo-back"></div>
+      <div class="landing-photo landing-photo-front"></div>
+    </div>
+  </section>
 
   <main>
     <section class="intro" id="home" aria-labelledby="home-title">
@@ -358,9 +363,13 @@
     <p>Privacy Policy | Terms and Conditions</p>
   </footer>
 
-  <div class="intro-chat" aria-label="Wellness greeting">
-    <span aria-hidden="true">💬</span>
-    <p>Hi! I am Gracious, your wellness and well being</p>
+  <div class="intro-chat" aria-label="Wellness appointment helper">
+    <div class="chat-avatar" aria-hidden="true"></div>
+    <div class="chat-copy">
+      <span class="chat-ribbon">Now offering video visits!</span>
+      <p>See available times and book an appointment right here.</p>
+      <p>It's free, fast and secure.</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
