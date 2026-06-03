@@ -4,7 +4,7 @@ const desktopLinks = document.querySelectorAll(".nav-tabs a[data-section]");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
 const sections = document.querySelectorAll("section[id]");
 const revealItems = document.querySelectorAll(
-  ".landing, .intro, main > .section, .card, .stat-card, .testimonial-card, .image-placeholder, .contact-form, .faq-list details, .map-placeholder, .cta-strip, .site-footer"
+  ".landing, .intro, main > .section, .card, .stat-card, .image-placeholder, .contact-form, .faq-list details, .map-placeholder, .cta-strip, .site-footer"
 );
 const parallaxImages = document.querySelectorAll(
   ".landing-photo, .hero-photo, .image-placeholder"
